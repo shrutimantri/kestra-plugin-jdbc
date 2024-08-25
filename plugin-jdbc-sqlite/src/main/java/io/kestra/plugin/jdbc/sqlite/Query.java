@@ -37,6 +37,9 @@ import java.util.Properties;
             full = true,
             title = "Execute a query and pass the results to another task.",
             code = {
+                "id: sqlite_query",
+                "namespace: company.team",
+                "",
                 "tasks:",
                 "  - id: update",
                 "    type: io.kestra.plugin.jdbc.sqlite.Query",
@@ -53,6 +56,9 @@ import java.util.Properties;
             full = true,
             title = "Execute a query, using existing sqlite file, and pass the results to another task.",
             code = {
+                "id: sqlite_query_using_file",
+                "namespace: company.team",
+                "",
                 "tasks:",
                 "- id: update",
                 "  type: io.kestra.plugin.jdbc.sqlite.Query",

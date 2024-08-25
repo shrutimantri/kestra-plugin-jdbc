@@ -33,6 +33,9 @@ import java.util.Properties;
             full = true,
             title = "Execute a query and fetch results in a task, and update another table with fetched results in a different task.",
             code = {
+                "id: snowflake_query",
+                "namespace: company.team",
+                "",
                 "tasks:",
                 "  - id: select",
                 "    type: io.kestra.plugin.jdbc.snowflake.Query",

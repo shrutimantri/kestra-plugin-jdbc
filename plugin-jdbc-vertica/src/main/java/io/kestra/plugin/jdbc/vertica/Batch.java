@@ -29,26 +29,30 @@ import java.time.ZoneId;
         @Example(
             title = "Fetch rows from a table and bulk insert to another one.",
             full = true,
-            code = {
-                "tasks:",
-                "  - id: query",
-                "    type: io.kestra.plugin.jdbc.vertica.Query",
-                "    url: jdbc:vertica://dev:56982/db",
-                "    username: vertica_user",
-                "    password: vertica_passwd",
-                "    sql: |",
-                "      SELECT *",
-                "      FROM xref",
-                "      LIMIT 1500;",
-                "    fetch: true",
-                "    store: true",
-                "  - id: update",
-                "    type: io.kestra.plugin.jdbc.vertica.Batch",
-                "    from: \"{{ outputs.query.uri }}\"",
-                "    url: jdbc:vertica://prod:56982/db",
-                "    username: vertica_user",
-                "    password: vertica_passwd",
-                "    sql: insert into xref values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )",
+            code = """
+                   id: vertica_natch_query
+                   namespace: company.team
+                   
+                   tasks:
+                     - id: query
+                       type: io.kestra.plugin.jdbc.vertica.Query
+                       url: jdbc:vertica://dev:56982/db
+                       username: vertica_user
+                       password: vertica_passwd
+                       sql: |
+                         SELECT *
+                         FROM xref
+                         LIMIT 1500;
+                       fetch: true
+                       store: true
+                     - id: update
+                       type: io.kestra.plugin.jdbc.vertica.Batch
+                       from: "{{ outputs.query.uri }}"
+                       url: jdbc:vertica://prod:56982/db
+                       username: vertica_user
+                       password: vertica_passwd
+                       sql: insert into xref values( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+                   """
             }
         )
     }

@@ -34,6 +34,9 @@ import java.util.Properties;
             full = true,
             title = "Execute a query and fetch results.",
             code = {
+                "id: rockset_query",
+                "namespace: company.team",
+                "",
                 "tasks:",
                 "  - id: select",
                 "    type: io.kestra.plugin.jdbc.rockset.Query",
